@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdfd.h                                             :+:      :+:    :+:   */
+/*   ft_strmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggroener <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/26 15:52:15 by ggroener          #+#    #+#             */
-/*   Updated: 2016/05/26 16:02:26 by ggroener         ###   ########.fr       */
+/*   Created: 2016/05/22 12:19:48 by ggroener          #+#    #+#             */
+/*   Updated: 2016/05/22 12:19:54 by ggroener         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include "libft.h"
 
-# include <unistd.h>
-# include "libft.h"
-# include <mlx.h>
-# include <stdio.h>
-# include <math>
-# include <fcntl.h>
-# include <sys/types.h>
-# include <sys/uio.h>
+char	*ft_strmap(char const *s, char (*f)(char))
+{
+	char	*str;
+	size_t	i;
 
-# define WIN_H 1200
-# define WIN_W 1900
-
-# define BLUE 0x0041FF
-# define BROWN 0xAD4F09
-
+	if ((str = (char*)malloc(sizeof(char) * ft_strlen(s) + 1)) == NULL)
+		return (NULL);
+	i = 0;
+	while (i < ft_strlen(s))
+	{
+		str[i] = f(s[i]);
+		i += 1;
+	}
+	return (str);
+}

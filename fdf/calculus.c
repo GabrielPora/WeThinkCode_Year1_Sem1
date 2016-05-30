@@ -6,7 +6,7 @@
 /*   By: ggroener <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 09:35:58 by ggroener          #+#    #+#             */
-/*   Updated: 2016/05/27 15:22:39 by ggroener         ###   ########.fr       */
+/*   Updated: 2016/05/30 10:34:04 by ggroener         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,26 @@ void	rotate_x(t_win *win, t_rp *rp)
 
 void	calculate(t_win *win, t_point *pt)
 {
+	t_rp	*rp;
+
+	rp = (t_rp *)malloc(sizeof(t_rp));
+	rp->act_px = pt->d3x * win->pad - (sqrt(sq(win->map_h) + sq(win->map_w)));
+	rp->act_py = pt->d3y * win->pad - (sqrt(sq(win->map_h) + sq(win->map_w)));
+	rp->act_pz = pt->d3z * win->pad_h;
+	if (win->rot == BET_Z)
+		rotate_w(win, rp);
+	else if (win->rot == BET_Y)
+		rotate_y(win, rp);
+	else
+		rotate_x(win, rp);
+	if (win->opt ==ISO)
+	{
+		pt->d2x = rp->px - rp->py + WIN_W * 0.5;
+		pt->d2y = rp->pz + rp->px  * 0.5 + rp->py * 0.5 + WIN_H * 0.3;
+	}
+	else if (win->opt == PARA)
+	{
+		pt->d2x = rp->px - rp->pz + WIN_W * 0.5;
+		pt->d2y = rp->py + -1  * 0.5 * rp->pz + WIN_H * 0.3;
+	}
 }

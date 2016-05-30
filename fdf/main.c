@@ -61,6 +61,6 @@ int		main(int argc, char **argv)
 	if (argc > 1 && argc < 3)
 		ft_import_map(&win);
 	else
-		ft_putstr("Insert map here.");
+		ft_putstr("42.fdf");
 	return (0);
 }
