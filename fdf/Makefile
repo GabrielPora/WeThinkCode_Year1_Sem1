@@ -1,23 +1,47 @@
-NAME = FdF
-SRC = {main,draw,calculus,mlx,parsing,utils,zoom_option}.c
-SRC += {make_point,move_option,projection,mouse,rotate}.c
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: ggroener <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2016/06/03 14:06:43 by ggroener          #+#    #+#              #
+#    Updated: 2016/06/03 14:58:10 by ggroener         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME = fdf
+SRC = {main,draw,calculus,mlx,parsing,utils,zoom_option}.c                   
+SRC += {make_point,move_option,projection,mouse,rotate}.c                        
 SRC += {display,hook}.c
-LIB_H = -I libft/
-LIB = libft/libft.a
-FLAG = -lmlx -framework OpenGL -framework AppKit
-OBJ = $(SRC:.c=.o)
+OBJECTS = $(SRC:.c=.o)
+CFLAG = -Wall -Werror -Wextra
+ATTACH = -L libft/ -lft -lmlx -framework OpenGL -framework AppKit
 
 all: $(NAME)
 
-$(NAME):
-	make -C ./libft fclean && make -C ./libft
-	gcc -Wall -Wextra -Werror -c $(LIB_H) $(SRC) $(FLAG) 
-	gcc -Wall -Wextra -Werror -g $(OBJ) $(LIB_H) $(LIB) $(FLAG) -o $(NAME)
+quick: clean $(NAME)
+	@echo "Made Quickly"
+
+lib:
+	@make -C libft/ fclean
+	@make -C libft/
+
+$(NAME): lib
+	@gcc $(CFLAG) -I libft/ -c $(SRC)
+	@gcc $(CFLAG) -o $(NAME) $(OBJECTS) $(ATTACH)
+	@echo "fdf Successfully Compiled"
 
 clean:
-	rm -rf $(OBJ)
+	@/bin/rm -f $(OBJECTS)
+	@make -C libft/ clean
 
 fclean: clean
-	rm -rf $(NAME)
+	@/bin/rm -f $(NAME)
+	@make -C libft/ fclean
 
 re: fclean all
+
+norme:
+	@clear
+	@norminette $(FILES)

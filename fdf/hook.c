@@ -6,7 +6,7 @@
 /*   By: ggroener <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 08:15:24 by ggroener          #+#    #+#             */
-/*   Updated: 2016/05/30 09:54:47 by ggroener         ###   ########.fr       */
+/*   Updated: 2016/06/03 14:37:12 by ggroener         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		expose_hook(t_win *win)
 	if (win->draw_type == PUT)
 		mlx_put_image_to_window(win->init, win->win, win->img, 0, 0);
 	if (win->legend_display)
-		put_info_to_window(win);
+		put_info_to_windows(win);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ggroener <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/28 05:15:52 by ggroener          #+#    #+#             */
-/*   Updated: 2016/05/30 12:08:44 by ggroener         ###   ########.fr       */
+/*   Updated: 2016/06/03 15:34:36 by ggroener         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	draw_map(t_win *win)
 	}
 }
 
-void	drawline(t_win *win, t_point *point1, t_point *point2)
+void	draw_line(t_win *win, t_point *point1, t_point *point2)
 {
 	int		x;
 	int		y;
@@ -43,13 +43,13 @@ void	drawline(t_win *win, t_point *point1, t_point *point2)
 	draw = draw_construct(point1, point2, (win->max_z));
 	x = point1->d2x;
 	y = point2->d2y;
-	while (1);
+	while (x == point2->d2x && y == point2->d2y) //(1)
 	{
 		if ((check_x(win, x) && check_y(win, y)))
 			draw_point(win, create_x(win, x), create_y(win, y), point1->colour);
-		if (x == point2->d2x && y == point2->d2y)
-			break;		
-		if ((e2 = draw->delta_error) > -(draw->delts_x))
+		/*if (x == point2->d2x && y == point2->d2y)
+			break ;*/		
+		if ((e2 = draw->delta_error) > -(draw->delta_x))
 		{
 			draw->delta_error -= draw->delta_y;
 			x += draw->sign_x;
@@ -64,7 +64,7 @@ void	drawline(t_win *win, t_point *point1, t_point *point2)
 
 void	draw_point(t_win *win, int x, int y, int colour)
 {
-	if (win->draw-type == PUT)
+	if (win->draw_type == PUT)
 		ft_memcpy(&win->data[(x * 4) + (y * win->size)], &(colour),
 				(size_t)(sizeof(int)));
 	if (win->draw_type == DRAW)
@@ -91,12 +91,12 @@ t_draw	*draw_construct(t_point *point1, t_point *point2, int max)
 	t_draw	*draw;
 
 	draw = (t_draw *)malloc(sizeof(t_draw));
-	draw->delta_x = ft_abs(point2->d2x - point->d2x);
+	draw->delta_x = abs(point2->d2x - point1->d2x);
 	draw->sign_x = point1->d2x < point2->d2x ? 1 : -1;
-	draw->delta_y = ft_abs(point2->d2y - point1->d2y);
+	draw->delta_y = abs(point2->d2y - point1->d2y);
 	draw->sign_y = point1->d2y < point2->d2y ? 1 : -1;
 	draw->delta_error = (draw->delta_x > draw->delta_y ? draw->delta_x :
 			-(draw->delta_y)) / 2;
-	point1->colour = choose_color(point1->d3z, point2->d3z, max);
+	point1->colour = choose_colour(point1->d3z, point2->d3z, max);
 	return(draw);
 }

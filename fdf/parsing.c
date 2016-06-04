@@ -6,7 +6,7 @@
 /*   By: ggroener <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 11:29:27 by ggroener          #+#    #+#             */
-/*   Updated: 2016/05/30 14:25:38 by ggroener         ###   ########.fr       */
+/*   Updated: 2016/06/03 14:32:16 by ggroener         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		count_map_height(t_point **grid)
 	return (count);
 }
 
-t_point		**create_map(t_win *win);
+t_point		**create_map(t_win *win)
 {
 	t_point	**grid;
 	int		i;
@@ -68,7 +68,7 @@ t_point		*create_int_table(t_win *win, char *str, int pos)
 	i = 0;
 	str_lst = ft_strsplit(str, ' ');
 	size = count_map_length(str_lst);
-	win->map_w = (size > win->map) ? size : win->map_w;
+	win->map_w = (size > win->map_w) ? size : win->map_w;
 	list = (t_point *)malloc(sizeof(t_point) * (win->map_w + 1));
 	while (str_lst[i] != NULL)
 	{
@@ -80,7 +80,7 @@ t_point		*create_int_table(t_win *win, char *str, int pos)
 	while (i < win->map_w)
 	{
 		list[i] = ft_create_point("0", i, pos);
-		i++:
+		i++;
 	}
 	return (list);
 }

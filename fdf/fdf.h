@@ -6,7 +6,7 @@
 /*   By: ggroener <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 10:47:22 by ggroener          #+#    #+#             */
-/*   Updated: 2016/05/30 15:50:36 by ggroener         ###   ########.fr       */
+/*   Updated: 2016/06/03 15:43:48 by ggroener         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 # include <sys/types.h>
 # include <sys/uio.h>
 
-# define WIN_H 1200
-# define WIN_W 1900
+# define WIN_H  1200
+# define WIN_W  1900
 
 # define BLUE 0x0041FF
 # define BROWN 0xAD4F09
@@ -47,7 +47,7 @@ typedef struct	s_point
 	int			d3z;
 	int			d2x;
 	int			d2y;
-	int			color;
+	int			colour;
 }				t_point;
 
 typedef struct	s_win
@@ -58,7 +58,7 @@ typedef struct	s_win
 	void		*img;
 	int			size;
 	int			endian;
-	int			color;
+	int			colour;
 	t_point		**map;
 	char		*path;
 	int			rot;
@@ -82,7 +82,7 @@ typedef struct	s_bresenham
 	int			delta_y;
 	int			sign_y;
 	int			delta_error;
-}				t_bres;
+}				t_draw;
 
 typedef struct	s_rotate_point
 {
@@ -107,8 +107,8 @@ void			calculate(t_win *win, t_point *point);
 int				choose_colour(int p1, int p2, int max);
 void			draw_map(t_win *win);
 void			draw_line(t_win *win, t_point *point1, t_point *point2);
-t_bres			*bres_construct(t_point *point1, t_point *point2, int max);
-void			draw_point(t_win *win, int x, int y, int color);
+t_draw			*draw_construct(t_point *point1, t_point *point2, int max);
+void			draw_point(t_win *win, int x, int y, int colour);
 void			zoom_map(t_win *win);
 void			zoomout_map(t_win *win);
 void			move_image_up(t_win *win);
@@ -126,8 +126,8 @@ void			put_method(t_win *win);
 void			erase(t_win *win);
 void			vanilla_mode(t_win *win);
 int				mouse_hook(int button, int x, int y, t_win *win);
-void			increase_pike(t_win *win);
-void			decrease_pike(t_win *win);
+void			increase_pixel(t_win *win);
+void			decrease_pixel(t_win *win);
 void			rotate_left(t_win *win);
 void			rotate_right(t_win *win);
 int				key_hook2(int keycode, t_win *win);

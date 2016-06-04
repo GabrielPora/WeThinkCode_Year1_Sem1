@@ -6,7 +6,7 @@
 /*   By: ggroener <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 09:55:28 by ggroener          #+#    #+#             */
-/*   Updated: 2016/05/30 10:00:54 by ggroener         ###   ########.fr       */
+/*   Updated: 2016/06/03 14:33:58 by ggroener         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int		create_x(t_win *win, int x)
 	return (x + win->move_lr);
 }
 
-int		create_y(t_win *win, int x)
+int		create_y(t_win *win, int y)
 {
 	return (y + win->move_ud);
 }

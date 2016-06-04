@@ -6,7 +6,7 @@
 /*   By: ggroener <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 09:35:58 by ggroener          #+#    #+#             */
-/*   Updated: 2016/05/30 10:34:04 by ggroener         ###   ########.fr       */
+/*   Updated: 2016/06/03 14:28:04 by ggroener         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	calculate_coord(t_win *win)
 	draw_map(win);
 }
 
-void	rotate_z(t_win *win, t_rp *rp)
+void	rotate_w(t_win *win, t_rp *rp)
 {
 	rp->px = rp->act_px * cos(win->angle) - rp->act_py * sin(win->angle);
 	rp->py = rp->act_px * sin(win->angle) + rp->act_py * cos(win->angle);
