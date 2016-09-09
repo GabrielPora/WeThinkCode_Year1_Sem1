@@ -7,3 +7,4 @@ Contains all Projects I have done.
 -Unix
 To compile
 -Use Terminal to compile by typing "make" or "make re" on root of each folder.
+The "info" folder contains information on the project

@@ -6,7 +6,7 @@
 /*   By: ggroener <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/12 09:26:28 by ggroener          #+#    #+#             */
-/*   Updated: 2016/05/12 09:37:12 by ggroener         ###   ########.fr       */
+/*   Updated: 2016/07/23 12:32:31 by ggroener         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,17 @@
 # define _LIBFT_H
 
 # include <string.h>
+# include <stdlib.h>
+# include <unistd.h>
 # include <libc.h>
+# include <sys/uio.h>
+# include <fcntl.h>
+
+# include <stdarg.h>
+# include <string.h>
+
+# define BUFF_SIZE 32
+# define HEX "0123456789abcdef"
 
 typedef struct		s_list
 {
@@ -75,10 +85,54 @@ void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(char const *s, int fd);
 void				ft_putendl_fd(char const *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
+
+int					get_next_line(const int fd, char **line);
+int					ft_printf(const char *format, ...);
+int					ft_intlen(int n);
+int					ft_printf_hex(unsigned int n);
+int					ft_print_hex(const char *format, int i, va_list ap);
+int					ft_printf_hexm(unsigned int n);
+int					ft_printf_hexa(unsigned long n);
+int					ft_printf_ptr(void *n);
+int					ft_printf_nbr_ld(long n);
+int					ft_printf_char(char c);
+int					ft_printf_nbr(int nb);
+int					ft_printf_str(char *str);
+int					ft_printf_long(const char *format, int i, va_list ap);
+int					ft_printf_type(const char *format, int i, va_list ap);
+int					ft_printf_unbr(unsigned int n);
+int					ft_printf_octal(unsigned int n);
+void				ft_putnbr_lf(double n);
+int					ft_printf_nbr_lf(double n);
+void				ft_putnbr_ld(long n);
+
+void				ft_free_2d_array(char ***str);
 t_list				*ft_lstnew(void const *content, size_t content_size);
 void				ft_lstdelone(t_list **alst, void (*del)(void*, size_t));
 void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
+int					ft_bufferreader(const int fd, char **line);
+char				*ft_strjoin_free1(char *s1, char *s2);
+char				*ft_strjoin_free2(char *s1, char *s2);
+char				*ft_strjoin_free3(char *s1, char *s2);
+double				ft_atod(const char *str);
+char				*ft_ltoa(long long int n);
+char				*ft_ultoa(unsigned long long int n);
+char				*ft_ltoa_base(long long int n, char *base);
+char				*ft_ultoa_base(unsigned long long int n, char *base);
+void				ft_putwchar(wchar_t c);
+void				ft_putwchar_fd(wchar_t c, int fd);
+void				ft_putwstr(wchar_t const *s);
+void				ft_putwstr_fd(wchar_t const *s, int fd);
+size_t				ft_wstrlen(wchar_t const *s);
+wchar_t				*ft_wstrsub(wchar_t const *s, unsigned int st, size_t l);
+long				ft_atol(char const *str);
+char				*ft_strsub_free(char const *s, unsigned int st, size_t l);
+char				*ft_strtrim_free(char const *s);
+void				ft_exit(char *message, int exit_status);
+void				ft_putul(size_t n);
+void				ft_putul_fd(size_t n, int fd);
+
 #endif

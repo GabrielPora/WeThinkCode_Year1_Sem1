@@ -1,0 +1,12 @@
+Malloc errors cause signal 6 to be recieved.
+ctrl+c = signal 2 (SIGINT)
+ctrl+z = signal 18 (SIGTSTP)
+causes signal 21? (SIGTTIN)
+
+
+links for pipe and redirection 
+https://www.quora.com/Unix-How-can-I-write-a-code-for-PIPE-in-C-shell-script-python
+http://unix.stackexchange.com/questions/14270/get-exit-status-of-process-thats-piped-to-another/73180#73180
+http://stackoverflow.com/questions/1221833/bash-pipe-output-and-capture-exit-status
+http://stackoverflow.com/questions/37126964/get-exit-code-when-piping-into-grep-v
+https://www.google.co.za/webhp?sourceid=chrome-instant&rlz=1C5CHFA_enZA704&ion=1&espv=2&ie=UTF-8#q=how+to+handle+grep+and+pipe+in+code
