@@ -4,6 +4,7 @@ a.out
 *.o
 *.swp
 .*.c.*
+._*
 ._*.pdf
 ._*.txt
 *.json
@@ -11,7 +12,4 @@ a.out
 *.a
 *.VC.*
 *.nfs.*
-._*
-minishell
-21sh
-
+*.plist
